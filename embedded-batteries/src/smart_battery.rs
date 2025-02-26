@@ -75,6 +75,7 @@ impl<T: ErrorType + ?Sized> ErrorType for &mut T {
 }
 
 /// Depending on the value of the CapacityMode bit, the Smart Battery will use milliamps or centiwatts.
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum CapacityModeValue {
     /// Unsigned Milliamp or MilliampHour representation, used when CapacityMode bit = 0.
@@ -88,6 +89,7 @@ pub type Minutes = u16;
 
 /// Depending on the value of the CapacityMode bit, the Smart Battery will use milliamps or centiwatts.
 /// Signed to represent negative currents and capacities.
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum CapacityModeSignedValue {
     /// Signed Milliamp or MilliampHour representation, used when CapacityMode bit = 0.
@@ -165,8 +167,14 @@ impl ErrorCode {
     }
 }
 
+impl From<u8> for ErrorCode {
+    fn from(value: u8) -> Self {
+        Self::from_bits(value)
+    }
+}
+
 /// Revision of SBS Spec, used in specification_info().
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 #[repr(u8)]
 pub enum Revision {
@@ -187,8 +195,19 @@ impl Revision {
     }
 }
 
+impl TryFrom<u8> for Revision {
+    type Error = ();
+
+    fn try_from(value: u8) -> Result<Self, Self::Error> {
+        match value {
+            1 => Ok(Self::Version1And1Dot1),
+            _ => Err(()),
+        }
+    }
+}
+
 /// Version of SBS Spec, used in specification_info().
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 #[repr(u8)]
 pub enum Version {
@@ -217,6 +236,12 @@ impl Version {
             3 => Self::Version1Dot1Pec,
             _ => Self::Reserved,
         }
+    }
+}
+
+impl From<u8> for Version {
+    fn from(value: u8) -> Self {
+        Self::from_bits(value)
     }
 }
 
