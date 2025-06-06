@@ -21,3 +21,7 @@ pub mod charger;
 
 /// Blocking Smart Battery module
 pub mod smart_battery;
+
+/// Advanced Configuration and Power Interface (ACPI)
+/// Power Source and Power Meter Devices module
+pub mod acpi;

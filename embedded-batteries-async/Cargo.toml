@@ -1,6 +1,6 @@
 [package]
 name = "embedded-batteries-async"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 rust-version = "1.83"
 authors = ["Matteo Tullo <matteotullo@microsoft.com>"]
@@ -15,7 +15,7 @@ repository = "https://github.com/OpenDevicePartnership/embedded-batteries"
 defmt = ["dep:defmt", "embedded-batteries/defmt"]
 
 [dependencies]
-embedded-batteries = "0.1.0"
+embedded-batteries = "0.2.0"
 embedded-hal = "1.0.0"
 defmt = { version = "0.3", optional = true }
 bitfield-struct = "0.10"

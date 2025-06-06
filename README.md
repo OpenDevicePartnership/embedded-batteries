@@ -8,12 +8,14 @@ Specifically, traits are defined for both battery fuel gauges and battery charge
 
 Drivers for fuel gauges and charging controllers should implement these traits to provide a standard way of interfacing with the device.
 
+Additionally, the [ACPI Specification's Power Source and Power Meter Devices](https://uefi.org/htmlspecs/ACPI_Spec_6_4_html/10_Power_Source_and_Power_Meter_Devices/Power_Source_and_Power_Meter_Devices.html) battery control messages are defined as an supplementary superset of the Smart Battery specification, for users building systems compliant with ACPI.
+
 ## Crates
 
 | Crate | Description |
 |-|-|
-| [embedded-batteries](./embedded-batteries) | Core traits, blocking version |
-| [embedded-batteries-async](./embedded-batteries-async) | Core traits, async version |
+| [embedded-batteries](./embedded-batteries) | Core traits, ACPI battery control methods, blocking version |
+| [embedded-batteries-async](./embedded-batteries-async) | Core traits, ACPI battery control methods, async version |
 
 ## MSRV
 
