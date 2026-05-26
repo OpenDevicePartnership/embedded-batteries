@@ -1,7 +1,7 @@
 # AGENTS.md
 
 Guidance for AI coding agents (Copilot, Claude, Codex, Cursor, etc.) working
-in the `openDevicePartnership/embedded-batteries` repository. Human
+in the `OpenDevicePartnership/embedded-batteries` repository. Human
 contributors are welcome to read it too — everything here is a verified
 description of how the repo actually works.
 
