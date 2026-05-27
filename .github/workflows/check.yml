@@ -2,8 +2,10 @@
 # several checks:
 # - fmt: checks that the code is formatted according to rustfmt
 # - clippy: checks that the code does not contain any clippy warnings
+# - semver: checks for semver violations
 # - doc: checks that the code can be documented without errors
 # - hack: check combinations of feature flags
+# - deny: checks licenses, advisories, sources, and bans
 # - msrv: check that the msrv specified in the crate is correct
 permissions:
   contents: read
@@ -63,7 +65,6 @@ jobs:
           clippy_flags: -- -F clippy::suspicious -F clippy::correctness -F clippy::perf -F clippy::style
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-  # Enable once we have a released crate
   semver:
     runs-on: ubuntu-latest
     name: semver
