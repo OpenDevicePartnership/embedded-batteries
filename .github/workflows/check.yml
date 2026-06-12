@@ -92,7 +92,7 @@ jobs:
       - name: Install nightly
         uses: dtolnay/rust-toolchain@nightly
       - name: cargo doc
-        run: cargo doc --no-deps --all-features
+        run: cargo doc --locked --no-deps --all-features
         env:
           RUSTDOCFLAGS: --cfg docsrs
 
@@ -112,7 +112,7 @@ jobs:
       # intentionally no target specifier; see https://github.com/jonhoo/rust-ci-conf/pull/4
       # --feature-powerset runs for every combination of features
       - name: cargo hack
-        run: cargo hack --feature-powerset check
+        run: cargo hack --feature-powerset check --locked
 
   deny:
     # cargo-deny checks licenses, advisories, sources, and bans for
@@ -131,7 +131,7 @@ jobs:
           log-level: warn
           manifest-path: ./Cargo.toml
           command: check
-          arguments: --all-features
+          arguments: --all-features --locked
 
   msrv:
     # check that we can build using the minimal rust version that is specified by this crate
@@ -164,4 +164,4 @@ jobs:
         with:
           toolchain: ${{ matrix.msrv }}
       - name: cargo +${{ matrix.msrv }} check
-        run: cargo check
+        run: cargo check --locked
